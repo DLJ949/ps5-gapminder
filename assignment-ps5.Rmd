@@ -37,6 +37,29 @@ The data printed a little strangely, but that is likely due to how many columns 
 # 2 Descriptive statistics (15pt)
 
 1. (3pt) How many countries are there in the dataset? Analyze all three: *iso3*, *iso2* and *name*.
+```{r}
+population_data %>% 
+  group_by(name) %>% 
+  summarise(n = n_distinct(name)) %>% 
+  arrange(desc(n))
+```
+
+There are 250 unique country names.
+```{r}
+population_data %>% 
+  group_by(iso2) %>% 
+  summarise(n = n_distinct(name)) %>% 
+  arrange(desc(n))
+```
+
+There are 249 unique country iso2 codes, with two of them being blank.
+```{r}
+population_data %>% 
+  group_by(iso3) %>% 
+  summarise(n = n_distinct(name)) %>% 
+  arrange(desc(n))
+```
+There are 253 unique iso3 codes.
 
 2. If you did this correctly, you saw that there are more iso-2 codes than names, and there are even more *iso3*-codes. What is going on? Can you find it out?
 
