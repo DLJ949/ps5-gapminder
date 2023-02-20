@@ -119,28 +119,34 @@ population_data %>%
 
 ```{r}
 population_data %>% 
-  filter(name == "United States of America") %>% 
-  group_by(time) %>% 
-  summarise(emissions = sum(co2))
+  filter(name == c("United States of America", "China", "India", "Poland", "United Kingdom of Great Britain and Northern Ireland")) %>% 
+  ggplot(aes(time, co2, col=factor(name))) +
+  geom_line() +
+  scale_x_continuous(limits = c(min(population_data$time), max(population_data$time))) +
+  scale_y_continuous(limits = c(min(population_data$co2), max(population_data$co2)))
 ```
+
+We see that the United States during the duration of the Cold War was dominant in its CO2 emissions, but rapidly has been overtaken by the industrializing and new energy production center of the world, China. China has skyrocketed in its harmful CO2 emissions since its turn to communism, but India has also been rapidly increasing its CO2 emissions since the turn of the 21st century. Poland and the UK, however, have stayed relatively low for their entire duration of graphing Co2 emissions.
+
+
+3. (5pt) Now let’s analyze the CO2 emissions per capita (*co2_PC*). Make a similar plot of thesame countries. What does this figure suggest? \
 
 ```{r}
 population_data %>% 
   filter(name == c("United States of America", "China", "India", "Poland", "United Kingdom of Great Britain and Northern Ireland")) %>% 
-  ggplot(aes(time, sum(co2), col=factor(name))) +
-  geom_path() +
-  scale_x_continuous(limits = c(1960, 2016))
+  ggplot(aes(time, co2_PC, col=factor(name))) +
+  geom_line() +
+  scale_x_continuous(limits = c(min(population_data$time), max(population_data$time))) +
+  scale_y_continuous(limits = c(min(population_data$co2_PC), max(population_data$co2_PC)))
 ```
 
-orange_trees %>% 
-  ggplot(aes(age, circumference, col=factor(Tree))) +
-  geom_line()
-
-3. (5pt) Now let’s analyze the CO2 emissions per capita (*co2_PC*). Make a similar plot of thesame countries. What does this figure suggest? \
+Contrary to the previous graph, the graph of CO2 emissions per capita paints a different picture than simply gross CO2 emissions. China and India's monstrous populations make it so that the average Chinese or Indian citizen does not produce much CO2, especially relative to those found in Europe and especially in the US. Poland surprisingly overtakes the UK during the 80s in C)2 emissions per capita but has been decreasing, while the UK has been consistently decreasing CO2 emissions per capita and is now even below China. The US, however, is a massive outlier and the average American easily produces much more CO2 than many of these nations combined when looking at per capita emissions.
 
 4. (6pt) Compute average CO2 emissions per capita across the continents (assume *region* is the same as continent). Comment what do you see. \
 Note: just compute averages over countries and ignore the fact that countries are of different size. \
 Hint: Americas 2016 should be 4.80. \
+
+
 
 5. (7pt) Make a barplot where you show the previous results–average CO2 emissions per capita across continents in 1960 and 2016. \
 Hint: it should look something along these lines(**Please refer to the spec for the graph**) \
