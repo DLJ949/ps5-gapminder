@@ -40,6 +40,7 @@ The data printed a little strangely, but that is likely due to how many columns 
 ```{r}
 population_data %>% 
   group_by(name) %>% 
+  filter(!is.na(name)) %>% 
   summarise(n = n_distinct(name)) %>% 
   arrange(desc(n))
 ```
@@ -48,6 +49,7 @@ There are 250 unique country names.
 ```{r}
 population_data %>% 
   group_by(iso2) %>% 
+  filter(!is.na(name)) %>% 
   summarise(n = n_distinct(name)) %>% 
   arrange(desc(n))
 ```
@@ -56,6 +58,7 @@ There are 249 unique country iso2 codes, with two of them being blank.
 ```{r}
 population_data %>% 
   group_by(iso3) %>% 
+  filter(!is.na(name)) %>% 
   summarise(n = n_distinct(name)) %>% 
   arrange(desc(n))
 ```
@@ -65,9 +68,21 @@ There are 253 unique iso3 codes.
 
     (a) (5pt) Find how many names are there for each iso-2 code. Are there any iso-2 codes that correspond to more than one name? What are these countries?
     
+    
+  There are two iso-2 codes that are blank for two countries.
+  ### DNF(?) ###
+    
     (b) (5pt) Now repeat the same for name and iso3-code. Are there country names that have more than one iso3-code? What are these countries? Hint: two of these entitites are *CHANISL* and *NLD CURACAO*.
     
+    
+    ### DNF ###
+    
+  
 3. (2pt) What is the minimum and maximum year in these data?
+```{r}
+min(population_data$time, na.rm = TRUE)
+max(population_data$time, na.rm = TRUE)
+```
 
 ---------------------------------------------------------------------
 
