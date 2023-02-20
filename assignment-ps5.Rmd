@@ -105,7 +105,36 @@ Next, let’s analyze CO2 emissions.
 
 1. (2pt) How many missing co2 emissions are there for each year? Analyze both missing *CO2* and *co2_PC*. Which years have most missing data? \
 
+```{r}
+population_data %>% 
+  group_by(time) %>% 
+  filter(is.na(co2), is.na(co2_PC)) %>% 
+  summarise(num_co2 = length(is.na(co2)),
+  num_co2_pc = length(is.na(co2_PC))) %>% 
+  arrange(rank(desc(num_co2)))
+
+```
+  
 2. (5pt) Make a plot of total CO2 emissions over time for the U.S, China, and India. Add a few more countries of your choice. Explain what do you see. \
+
+```{r}
+population_data %>% 
+  filter(name == "United States of America") %>% 
+  group_by(time) %>% 
+  summarise(emissions = sum(co2))
+```
+
+```{r}
+population_data %>% 
+  filter(name == c("United States of America", "China", "India", "Poland", "United Kingdom of Great Britain and Northern Ireland")) %>% 
+  ggplot(aes(time, sum(co2), col=factor(name))) +
+  geom_path() +
+  scale_x_continuous(limits = c(1960, 2016))
+```
+
+orange_trees %>% 
+  ggplot(aes(age, circumference, col=factor(Tree))) +
+  geom_line()
 
 3. (5pt) Now let’s analyze the CO2 emissions per capita (*co2_PC*). Make a similar plot of thesame countries. What does this figure suggest? \
 
