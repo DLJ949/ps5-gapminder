@@ -46,6 +46,7 @@ population_data %>%
 ```
 
 There are 250 unique country names.
+
 ```{r}
 population_data %>% 
   group_by(iso2) %>% 
@@ -54,7 +55,10 @@ population_data %>%
   arrange(desc(n))
 ```
 
-There are 249 unique country iso2 codes, with two of them being blank.
+
+There are 249 unique country iso2 codes, with two countries having
+an iso-2 code of blank.
+
 ```{r}
 population_data %>% 
   group_by(iso3) %>% 
@@ -68,15 +72,25 @@ There are 253 unique iso3 codes.
 
     (a) (5pt) Find how many names are there for each iso-2 code. Are there any iso-2 codes that correspond to more than one name? What are these countries?
     
+    ```{r}
+population_data %>% 
+  group_by(name) %>% 
+  filter(iso2=="" & !is.na(name) & name!="") %>% 
+  summarise(n = n_distinct(name))
+```
     
-  There are two iso-2 codes that are blank for two countries.
-  ### DNF(?) ###
+  There are two iso-2 codes that are blank. One is from Namibia, and the other is from an undisclosed country.
     
     (b) (5pt) Now repeat the same for name and iso3-code. Are there country names that have more than one iso3-code? What are these countries? Hint: two of these entitites are *CHANISL* and *NLD CURACAO*.
     
+```{r}
+population_data %>% 
+  filter(!is.na(iso3) & name=="") %>% 
+  group_by(name) %>% 
+  distinct(iso3)
+```
     
-    ### DNF ###
-    
+
   
 3. (2pt) What is the minimum and maximum year in these data?
 ```{r}
