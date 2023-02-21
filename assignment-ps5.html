@@ -383,24 +383,21 @@ nrow(population_data)</code></pre>
 <li>(2pt) Print a small sample of data. Does it look OK?</li>
 </ol>
 <pre class="r"><code>sample_n(population_data, 2)</code></pre>
-<pre><code>##   iso3                                                 name iso2   region
-## 1  GBR United Kingdom of Great Britain and Northern Ireland   GB   Europe
-## 2  BHS                                              Bahamas   BS Americas
-##                        sub.region intermediate.region time totalPopulation
-## 1                 Northern Europe                     1992        57580402
-## 2 Latin America and the Caribbean           Caribbean 1999          294062
-##   fertilityRate lifeExpectancy childMortality youthFemaleLiteracy
-## 1         1.790       76.43415            8.2                  NA
-## 2         2.166       71.85800           16.3                  NA
-##   youthMaleLiteracy adultLiteracy   GDP_PC accessElectricity agriculturalLand
-## 1                NA            NA 28328.00               100           180700
-## 2                NA            NA 30724.19               100              120
-##   agricultureTractors cerealProduction fertilizerHa        co2 greenhouseGases
-## 1                  NA         22057171     305.6149 556280.233      761019.600
-## 2                  NA              379      50.0000   1954.511        3580.497
-##    co2_PC pm2.5_35 battleDeaths
-## 1 9.66093       NA           NA
-## 2 6.64659       NA           NA</code></pre>
+<pre><code>##   iso3     name iso2   region                      sub.region
+## 1  HND Honduras   HN Americas Latin America and the Caribbean
+## 2  HUN  Hungary   HU   Europe                  Eastern Europe
+##   intermediate.region time totalPopulation fertilityRate lifeExpectancy
+## 1     Central America 2011         8480671          2.86       73.56900
+## 2                     1969        10298723          2.04       69.31463
+##   childMortality youthFemaleLiteracy youthMaleLiteracy adultLiteracy   GDP_PC
+## 1           22.4            96.92601          94.93154       85.1233 1939.339
+## 2           39.8                  NA                NA            NA       NA
+##   accessElectricity agriculturalLand agricultureTractors cerealProduction
+## 1           82.1953            32900                  NA           635620
+## 2                NA            68880               66606          9711470
+##   fertilizerHa       co2 greenhouseGases  co2_PC pm2.5_35 battleDeaths
+## 1     104.0706  8789.799        20084.14 1.03645  9.55272           NA
+## 2     134.3423 62419.674              NA 6.06091       NA           NA</code></pre>
 <p>The data printed a little strangely, but that is likely due to how
 many columns there were.</p>
 <hr />
@@ -822,6 +819,7 @@ Hint: 0.0904 for 1960.<br />
 <p>This assignment was a lot more work than the previous Problem Sets.
 This PS5 probably took me close to around 8 hours throughout the
 week.</p>
+<p>GITHUB REPO: <a href="https://github.com/DLJ949/ps5-gapminder/tree/main" class="uri">https://github.com/DLJ949/ps5-gapminder/tree/main</a></p>
 </div>
 
 
