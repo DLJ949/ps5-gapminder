@@ -146,6 +146,19 @@ Contrary to the previous graph, the graph of CO2 emissions per capita paints a d
 Note: just compute averages over countries and ignore the fact that countries are of different size. \
 Hint: Americas 2016 should be 4.80. \
 
+```{r}
+population_data %>% 
+  select(region, co2_PC, time) %>% 
+  filter(!is.na(region), !is.na(co2_PC), !region=="", time %in% c("1960", "2016")) %>% 
+  group_by(region, time) %>% 
+  summarise(avg_col2_PC = mean(co2_PC, na.rm = TRUE)) %>% 
+  ggplot(aes(region, avg_col2_PC, fill=factor(time))) +
+  geom_col(position="dodge") +
+  labs(title = "Average CO2 Emissions per capita by Continent",
+       x="Continent",
+       y="Average CO2 per capita (Metric Ton per Capita)",
+       fill="Time (Year)")
+```
 
 
 5. (7pt) Make a barplot where you show the previous results–average CO2 emissions per capita across continents in 1960 and 2016. \
@@ -153,6 +166,7 @@ Hint: it should look something along these lines(**Please refer to the spec for 
 
 6. Which countries are the three largest, and three smallest CO2 emitters (in terms of CO2 per capita) in 2019 for each continent? (Assume *region* is continent). \
 
+  We are missing data for 2019 for most countries, but for 2016 the three largest CO2 emitters per capita continents would be Europe, Asia, and the Americas in that order. The three smallest CO2 emitters (least to greatest) would be Africa, Oceania, and then the Americas. This data, however, filtered out the nameless continent with the large CO2 emissions, so had that counted, the top three would be the nameless contintent, Europe, and Asia and the three smallest would be Africa, Oceania, and the Americas in 2016.
 
 ---------------------------------------------------------------------
 
